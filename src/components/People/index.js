@@ -62,11 +62,12 @@ const People = () => {
         <Grid container className={'grid-container'} spacing={2}>
           {data.length > 0 &&
             data.map(
-              ({ name, height, mass, gender, edited, vehicles }, index) => {
+              ({ name, height, mass, gender, edited, vehicles, url }, index) => {
                 return (
                   <ShowPeopleData
                     key={`${name}-${height}-${mass}-${index}`}
                     name={name}
+                    url={url}
                     height={height}
                     mass={mass}
                     edited={edited}

@@ -21,11 +21,11 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const ShowPeopleData = ({ name, height, mass, gender, edited, vehicles }) => {
+const ShowPeopleData = ({ name, height, mass, gender, edited, url, vehicles }) => {
   const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.vehicles)
+  const { loading, selectedPeopleId } = useSelector((state) => state.vehicles)
   const showVehiclesDetails = () => {
-    dispatch(getVehiclesData({ vehiclesData: vehicles }))
+    dispatch(getVehiclesData({ vehiclesData: vehicles, selectedPeopleId: `${url}` }))
   }
 
   return (
@@ -52,7 +52,7 @@ const ShowPeopleData = ({ name, height, mass, gender, edited, vehicles }) => {
             ? (
               <LoadingButton
                 variant='contained'
-                loading={loading}
+                loading={loading && url === selectedPeopleId}
                 className={'vehicle-button'}
                 fullWidth
                 onClick={() => showVehiclesDetails()}

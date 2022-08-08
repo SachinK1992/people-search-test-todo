@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   loading: false,
   error: null,
-  data: []
+  data: [],
+  selectedPeopleId: null
 }
 
 const {
@@ -18,24 +19,28 @@ const {
   name: 'vehicles',
   initialState,
   reducers: {
-    getVehiclesData: (state) => ({
+    getVehiclesData: (state, action) => ({
       ...state,
-      loading: true
+      loading: true,
+      selectedPeopleId: action.payload.selectedPeopleId
     }),
     getVehiclesDataSuccess: (state, action) => ({
       ...state,
       loading: false,
       data: action.payload,
+      selectedPeopleId: null
     }),
     getVehiclesDataFailure: (state, action) => ({
       ...state,
       loading: false,
-      error: action.payload.msg
+      error: action.payload.msg,
+      selectedPeopleId: null
     }),
     clearVehiclesData: (state) => ({
       ...state,
       data: [],
-      loading: false
+      loading: false,
+      selectedPeopleId: null
     })
   } 
 })
